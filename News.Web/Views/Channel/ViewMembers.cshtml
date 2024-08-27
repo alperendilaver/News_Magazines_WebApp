@@ -1,0 +1,43 @@
+@model List<User>
+
+<div class="container mx-auto">
+    <div class="row justify-content-center">
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">Ad</th>
+                    <th scope="col">Soyad</th>
+                    <th scope="col">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model){
+                    <tr class="users">
+                        <td scope="col">@item.FirstName</td>
+                        <td scope="col">@item.LastName</td>
+                        <td scope="col"><button type="button" data-userid="@item.UserId" data-channelid="@ViewBag.ChannelId" class="btn btn-danger delete btn-sm">Üyeyi Sil</button></td>
+                    </tr>
+                    }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+            $(document).on('click','.delete',function(){
+                var userId = $(this).data("userid");
+                var channelId = $(this).data("channelid");
+                var parent=$(this).closest(".users")
+                $.ajax({
+                    url:'@Url.Action("RemoveMember","Channel")',
+                    type:'POST',
+                    data:{ChannelId:channelId,MemberId:userId},
+                    success:function(response){
+                        $(parent).remove();
+                    }
+                })
+            })
+        })
+    </script>
+}

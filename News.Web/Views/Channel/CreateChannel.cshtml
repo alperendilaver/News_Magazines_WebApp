@@ -1,0 +1,18 @@
+@model CreateChannelViewModel
+
+<div class="container mx-auto">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="form-group">
+                <form asp-action="CreateChannel" asp-controller="Channel" method="post">
+                    <div class="mb-3">
+                        <label asp-for="ChannelName" class="form-label">Kanal Adı Giriniz</label>
+                        <input type="text" class="form-control" asp-for="ChannelName" placeholder="Kanal Adı">
+                      </div>
+                      <input type="hidden" asp-for="AuthorId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)">
+                      <button type="submit" class="btn btn-primary">Kaydet</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

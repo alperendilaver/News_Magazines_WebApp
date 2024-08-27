@@ -1,0 +1,34 @@
+@model EditorsListViewModel
+<div id="latestUsers">
+    @await Html.PartialAsync("_GetAllUserRequests", Model)
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            function loadLatestNews() {
+                var activeTab = $('a.nav-link.active').attr('id');
+                $.ajax({
+                    url: '@Url.Action("GetAllUserRequests", "SuperAdmin")', // 'Home' yerine controller adınızı yazın
+                    type: 'GET',
+
+                    success: function(data) {
+                        // Burada 'data' yeni haber verilerini içerir
+                        $('#latestUsers').html(data);
+
+                        $('a.nav-link#' + activeTab).tab('show');
+                    },
+                    error: function() {
+                        console.log('Haberler yüklenemedi');
+                    }
+                });
+            }
+  
+            // İlk yükleme
+            loadLatestNews();
+  
+            // 10 saniyede bir haberleri güncelle
+            setInterval(loadLatestNews, 10000);
+        });
+    </script>
+  }
+  

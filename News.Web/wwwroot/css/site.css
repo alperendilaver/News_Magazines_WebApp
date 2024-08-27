@@ -1,0 +1,83 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+.cats{
+  padding-top:20px 
+  
+}
+.personitems{
+  margin-top: 7px;
+}
+.search{
+  margin-top: 15px !important;
+}
+.bell{
+  font-size: 18px !important;
+
+}
+.bg-faded {
+  background-color: #d7d6d6; /* Soluk bir renk */
+}
+.fa-door-open{
+  font-size: 18px;
+}
+.enterGroup{
+  margin-top: 2px;
+}
+.notify{
+  margin-top: 7px;
+}
+.hand-up{
+  margin-top: 10px;
+}
+.fa-user-group{
+  margin-top: 3px;
+}
+.memreqcount{
+  margin-bottom: 10px;
+   margin-left: 3px;
+}
+.nav-icon{
+  padding-left: 10px;
+  padding-top: 7px;
+}
+.fa-circle-user{
+  font-size: 18px !important;
+}
+.fa-hand-point-up{
+  font-size: 20px;
+}
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  background-color: #F4F4F4;
+
+}
+a {
+  text-decoration: none; /* Alt çizgiyi kaldırır */
+  color: inherit; /* Linklerin rengini metin rengiyle aynı yapar */
+  pointer-events: auto; /* Tıklanabilirliği kontrol et */
+}
+
+a:hover {
+  /* Üzerine gelindiğinde alt çizgi ekler */
+  color:blue; /* Üzerine gelindiğinde linkin rengini değiştirir */
+}
+.nav-item{
+  margin-left: 4px;
+  margin-right: 4px;
+}

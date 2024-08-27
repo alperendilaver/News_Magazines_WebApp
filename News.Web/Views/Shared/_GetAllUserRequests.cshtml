@@ -1,0 +1,174 @@
+@model EditorsListViewModel
+
+<div class="container text-center">
+    <div class="row justify-content-md-center">
+        <div class="col-10">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="editors-tab" data-toggle="tab" href="#editors" role="tab" aria-controls="editors" aria-selected="true">Editors</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="readers-tab" data-toggle="tab" href="#readers" role="tab" aria-controls="readers" aria-selected="false">Readers</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="authors-tab" data-toggle="tab" href="#authors" role="tab" aria-controls="authors" aria-selected="false">Authors</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <!-- Editor Listesi -->
+                <div class="tab-pane fade " id="editors" role="tabpanel" aria-labelledby="editors-tab">
+                    <table class="table table-bordered mt-4">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Ad</th>
+                                <th scope="col">Soyad</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Telefon</th>
+                                <th scope="col">Rol</th>
+                                <th scope="col">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                                @foreach (var editor in Model.Editors)
+                                {
+                                    <tr>
+                                        <td>@editor.FirstName</td>
+                                        <td>@editor.LastName</td>
+                                        <td>@editor.Email</td>
+                                        <td>@editor.PhoneNumber</td>
+                                        <td>@editor.Role.RoleName</td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <div class="ProccessItems">
+                                                    <a class="btn btn-primary btn-sm" asp-action="AddReaderFromEditor" asp-route-id="@editor.UserId">Reader Yap</a>
+                                                </div>
+                                                <div class="ProccessItems">
+                                                    <a class="btn btn-success btn-sm" asp-action="AddEditorFromAuthorOrReverse" asp-route-UserId="@editor.UserId" asp-route-RoleId="2">Yazar Yap</a>
+                                                </div>
+                                                <div class="ProccessItems">
+                                                    <form asp-action="Delete" asp-controller="Users" method="post" onsubmit="return confirm('Emin Misiniz')" >
+                                                        <input type="hidden" name="Id" value="@editor.UserId">
+                                                        <button type="submit" class="btn btn-danger btn-sm">Üyeyi Sil</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        
+                                    </tr>
+                                }
+                            
+                       
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Reader Listesi -->
+                <div class="tab-pane fade show active" id="readers" role="tabpanel" aria-labelledby="readers-tab">
+        <table class="table table-bordered mt-4">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Ad</th>
+                    <th scope="col">Soyad</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telefon</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Readers != null && Model.Readers.Any())
+                {
+                    foreach (var reader in Model.Readers)
+                    {
+                        <tr>
+                            <td>@reader.FirstName</td>
+                            <td>@reader.LastName</td>
+                            <td>@reader.Email</td>
+                            <td>@reader.PhoneNumber</td>
+                            <td>@reader.Role.RoleName</td>
+                            <td>
+                                <div class="d-flex">
+                                    <div class="ProccessItems">
+                                        <a class="btn btn-primary btn-sm" asp-action="AddEditorOrAuthor" asp-route-id="@reader.UserId" asp-route-role="4">Editor Yap</a>
+                                    </div>
+                                    <div class="ProccessItems">
+                                        <a class="btn btn-success btn-sm" asp-action="AddEditorOrAuthor" asp-route-id="@reader.UserId" asp-route-role="2">Yazar Yap</a>
+                                    </div>
+                                    <div class="ProccessItems">
+                                        <form asp-action="Delete" asp-controller="Users" method="post" onsubmit="return confirm('Emin Misiniz')" >
+                                            <input type="hidden" name="Id" value="@reader.UserId">
+                                            <button type="submit" class="btn btn-danger btn-sm">Üyeyi Sil</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="7">Reader bulunamadı.</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Author Listesi -->
+    <div class="tab-pane fade" id="authors" role="tabpanel" aria-labelledby="authors-tab">
+        <table class="table table-bordered mt-4">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Ad</th>
+                    <th scope="col">Soyad</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telefon</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Authors != null && Model.Authors.Any())
+                {
+                    foreach (var author in Model.Authors)
+                    {
+                        <tr>
+                            <td>@author.FirstName</td>
+                            <td>@author.LastName</td>
+                            <td>@author.Email</td>
+                            <td>@author.PhoneNumber</td>
+                            <td>@author.Role.RoleName</td>
+                            <td>
+                                <div class="d-flex">
+                                    <div class="ProccessItems">
+                                        <a class="btn btn-primary btn-sm" asp-action="AddEditorFromAuthorOrReverse" asp-route-RoleId="4" asp-route-UserId="@author.UserId" >Editor Yap</a>
+                                    </div>
+                                    <div class="ProccessItems">
+                                         <a class="btn btn-primary btn-sm" asp-action="AddReaderFromEditor" asp-route-id="@author.UserId">Reader Yap</a>
+                                    </div>
+                                    <div class="ProccessItems">
+                                        <form asp-action="Delete" asp-controller="Users" method="post" onsubmit="return confirm('Emin Misiniz')" >
+                                            <input type="hidden" name="Id" value="@author.UserId">
+                                            <button type="submit" class="btn btn-danger btn-sm">Üyeyi Sil</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="7">Author bulunamadı.</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<style>
+    .ProccessItems{
+        padding-left: 4px;
+    }
+</style>

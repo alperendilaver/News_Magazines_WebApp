@@ -1,0 +1,75 @@
+@model EditNewViewModel
+<div class="container">
+    <div class="row">
+        <div class="d-flex justify-content-center">
+            
+            <div class="card-columns">
+
+                <div class="card">
+                    <div class="card-body">
+                       
+                        
+                        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                          
+                            <div class="row">
+                                <div class="col-3">
+                                    <img class="card-img-top mb-4" src="/img/@Model.Image" alt="Card image cap">
+                                    <button class="btn btn-primary " type="button" id="changeImage" style="width: 100%;">Fotoğraf Değiştir</button>
+                                    <div class="form-field col-lg-12 uploadImage mb-3 mt-3" style="display: none; "> <input type="file" asp-for="ImageFile" class="form-control">      </div>
+                                </div>
+                                <div class="col-9">
+
+                                    <label for="Tittle" class="form-label">Başlık</label>
+                                    <input class="form-control mb-3" type="text" asp-for="Tittle" value="@Model.Tittle">
+                                    <textarea asp-for="Context" placeholder="Haber Metni Gir" value="@Model.Context"></textarea> <input type="hidden" value="@Model.NewId" asp-for="NewId">
+                                    <input type="hidden" asp-for="CategoryId" value="@Model.CategoryId">
+                                    <div class="d-flex justify-content-end">
+                                        
+                                        <button type="submit" class="btn submit-btn  btn-success mt-3" >Düzenlemeyi Kaydet</button>    
+                                    </div>
+                                </div>
+                                    
+                           
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="d-flex justify-content-start mb-3">
+                        <div class="deleteForm mt-4">
+                            <form asp-action="Delete" method="post" onsubmit="return confirm('Emin Misiniz')" style="display: inline-block; width: 100%;">
+                                <input type="hidden"  name="NewId" value="@Model.NewId">
+                                <button type="submit" class="btn btn-danger" style="width: 100%;">Haberi Sil</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        
+    </div>
+        
+    </div>
+</div>
+</div>
+@section Scripts{
+    <script >
+        tinymce.init({
+        selector:'#Context',  plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            language: 'tr',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        })
+    $(document).ready(function() {
+
+            $('#changeImage').click(function() {
+                $('.uploadImage').show(500);
+            });
+        });
+        </script>
+    }

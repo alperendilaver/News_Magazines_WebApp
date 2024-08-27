@@ -1,0 +1,164 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Alperen\\Desktop\\dotnetmyprojects\\news_magazines\\News\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DB935BE8-3350-43F5-A26F-93F8C5D5471B}|News.Web\\News.Web.csproj|c:\\users\\alperen\\desktop\\dotnetmyprojects\\news_magazines\\news\\news.web\\cld.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|",
+      "RelativeMoniker": "D:0:0:{DB935BE8-3350-43F5-A26F-93F8C5D5471B}|News.Web\\News.Web.csproj|solutionrelative:news.web\\cld.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB935BE8-3350-43F5-A26F-93F8C5D5471B}|News.Web\\News.Web.csproj|c:\\users\\alperen\\desktop\\dotnetmyprojects\\news_magazines\\news\\news.web\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB935BE8-3350-43F5-A26F-93F8C5D5471B}|News.Web\\News.Web.csproj|solutionrelative:news.web\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E472302-3D0B-460E-AA36-AEA587CF333B}|News.Data\\News.Data.csproj|c:\\users\\alperen\\desktop\\dotnetmyprojects\\news_magazines\\news\\news.data\\data\\models\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E472302-3D0B-460E-AA36-AEA587CF333B}|News.Data\\News.Data.csproj|solutionrelative:news.data\\data\\models\\author.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB935BE8-3350-43F5-A26F-93F8C5D5471B}|News.Web\\News.Web.csproj|c:\\users\\alperen\\desktop\\dotnetmyprojects\\news_magazines\\news\\news.web\\controllers\\channelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DB935BE8-3350-43F5-A26F-93F8C5D5471B}|News.Web\\News.Web.csproj|solutionrelative:news.web\\controllers\\channelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E472302-3D0B-460E-AA36-AEA587CF333B}|News.Data\\News.Data.csproj|C:\\Users\\Alperen\\Desktop\\dotnetmyprojects\\news_magazines\\News\\news.data\\cd.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|",
+      "RelativeMoniker": "D:0:0:{2E472302-3D0B-460E-AA36-AEA587CF333B}|News.Data\\News.Data.csproj|solutionrelative:news.data\\cd.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E472302-3D0B-460E-AA36-AEA587CF333B}|News.Data\\News.Data.csproj|c:\\users\\alperen\\desktop\\dotnetmyprojects\\news_magazines\\news\\news.data\\data\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2E472302-3D0B-460E-AA36-AEA587CF333B}|News.Data\\News.Data.csproj|solutionrelative:news.data\\data\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DB935BE8-3350-43F5-A26F-93F8C5D5471B}|News.Web\\News.Web.csproj|c:\\users\\alperen\\desktop\\dotnetmyprojects\\news_magazines\\news\\news.web\\news.web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{DB935BE8-3350-43F5-A26F-93F8C5D5471B}|News.Web\\News.Web.csproj|solutionrelative:news.web\\news.web.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2E472302-3D0B-460E-AA36-AEA587CF333B}|News.Data\\News.Data.csproj|c:\\users\\alperen\\desktop\\dotnetmyprojects\\news_magazines\\news\\news.data\\news.data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{2E472302-3D0B-460E-AA36-AEA587CF333B}|News.Data\\News.Data.csproj|solutionrelative:news.data\\news.data.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "cld.cd",
+              "DocumentMoniker": "C:\\Users\\Alperen\\Desktop\\dotnetmyprojects\\news_magazines\\News\\News.Web\\cld.cd",
+              "RelativeDocumentMoniker": "News.Web\\cld.cd",
+              "ToolTip": "C:\\Users\\Alperen\\Desktop\\dotnetmyprojects\\news_magazines\\News\\News.Web\\cld.cd",
+              "RelativeToolTip": "News.Web\\cld.cd",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000463|",
+              "WhenOpened": "2024-08-09T13:04:39.484Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ChannelController.cs",
+              "DocumentMoniker": "C:\\Users\\Alperen\\Desktop\\dotnetmyprojects\\news_magazines\\News\\News.Web\\Controllers\\ChannelController.cs",
+              "RelativeDocumentMoniker": "News.Web\\Controllers\\ChannelController.cs",
+              "ToolTip": "C:\\Users\\Alperen\\Desktop\\dotnetmyprojects\\news_magazines\\News\\News.Web\\Controllers\\ChannelController.cs",
+              "RelativeToolTip": "News.Web\\Controllers\\ChannelController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-11T19:51:32.979Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "C:\\Users\\Alperen\\Desktop\\dotnetmyprojects\\news_magazines\\News\\News.Web\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "News.Web\\Controllers\\CategoryController.cs",
+              "ToolTip": "C:\\Users\\Alperen\\Desktop\\dotnetmyprojects\\news_magazines\\News\\News.Web\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "News.Web\\Controllers\\CategoryController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAwAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-11T19:51:27.865Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Author.cs",
+              "DocumentMoniker": "C:\\Users\\Alperen\\Desktop\\dotnetmyprojects\\news_magazines\\News\\News.Data\\Data\\Models\\Author.cs",
+              "RelativeDocumentMoniker": "News.Data\\Data\\Models\\Author.cs",
+              "ToolTip": "C:\\Users\\Alperen\\Desktop\\dotnetmyprojects\\news_magazines\\News\\News.Data\\Data\\Models\\Author.cs",
+              "RelativeToolTip": "News.Data\\Data\\Models\\Author.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-09T13:17:42.835Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Category.cs",
+              "DocumentMoniker": "C:\\Users\\Alperen\\Desktop\\dotnetmyprojects\\news_magazines\\News\\News.Data\\Data\\Models\\Category.cs",
+              "RelativeDocumentMoniker": "News.Data\\Data\\Models\\Category.cs",
+              "ToolTip": "C:\\Users\\Alperen\\Desktop\\dotnetmyprojects\\news_magazines\\News\\News.Data\\Data\\Models\\Category.cs",
+              "RelativeToolTip": "News.Data\\Data\\Models\\Category.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-09T13:17:38.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "News.Web.csproj",
+              "DocumentMoniker": "C:\\Users\\Alperen\\Desktop\\dotnetmyprojects\\news_magazines\\News\\News.Web\\News.Web.csproj",
+              "RelativeDocumentMoniker": "News.Web\\News.Web.csproj",
+              "ToolTip": "C:\\Users\\Alperen\\Desktop\\dotnetmyprojects\\news_magazines\\News\\News.Web\\News.Web.csproj",
+              "RelativeToolTip": "News.Web\\News.Web.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-08-09T13:02:37.549Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "News.Data.csproj",
+              "DocumentMoniker": "C:\\Users\\Alperen\\Desktop\\dotnetmyprojects\\news_magazines\\News\\News.Data\\News.Data.csproj",
+              "RelativeDocumentMoniker": "News.Data\\News.Data.csproj",
+              "ToolTip": "C:\\Users\\Alperen\\Desktop\\dotnetmyprojects\\news_magazines\\News\\News.Data\\News.Data.csproj",
+              "RelativeToolTip": "News.Data\\News.Data.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-08-09T13:02:26.546Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "cd.cd",
+              "DocumentMoniker": "C:\\Users\\Alperen\\Desktop\\dotnetmyprojects\\news_magazines\\News\\News.Data\\cd.cd",
+              "RelativeDocumentMoniker": "News.Data\\cd.cd",
+              "ToolTip": "C:\\Users\\Alperen\\Desktop\\dotnetmyprojects\\news_magazines\\News\\News.Data\\cd.cd",
+              "RelativeToolTip": "News.Data\\cd.cd",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000463|",
+              "WhenOpened": "2024-08-09T10:50:19.175Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

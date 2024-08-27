@@ -1,0 +1,227 @@
+﻿@{
+  ViewData["Title"] = "Home Page";
+}
+@model News.Web.Models.Home.ShowNewsViewModel
+<div class="container mt-4 mb-4">
+    <div class="row">
+        <div class="col-md-8 mb-4">
+            <div id="newsCarousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    @for (int i = 0; i < Model.AllNews.Count; i++)
+                    {
+                        <li data-target="#newsCarousel" data-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
+                    }
+                </ol>
+                <div class="carousel-inner">
+                    @foreach (var newsItem in Model.AllNews.Select((item, index) => new { item, index }))
+                    {
+                        <div class="carousel-item @(newsItem.index == 0 ? "active" : "")">
+                            <a asp-action="Detail" asp-controller="New" asp-route-id="@newsItem.item.NewId">
+                                <img src="/img/@newsItem.item.Image" class="d-block w-100" alt="@newsItem.item.Tittle">
+                            </a>
+                        </div>
+                    }
+                </div>
+                <a class="carousel-control-prev" href="#newsCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#newsCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div id="latestNews">
+                @await Html.PartialAsync("_LatestNewsPartial", Model)
+            </div>
+        </div>
+    </div>
+  </div>
+  
+<div class="container mt-4 mb-4">
+  <div class="row">
+      <div class="col-6">
+          <div id="newsCarousel1" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                  @for (int i = 0; i < Model.FirstRandomCategoryNews.Count; i++)
+                  {
+                      <li data-target="#newsCarousel1" data-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
+                  }
+              </ol>
+              <div class="carousel-inner">
+                  @foreach (var newsItem in Model.FirstRandomCategoryNews.Select((item, index) => new { item, index }))
+                  {
+                      <div class="carousel-item @(newsItem.index == 0 ? "active" : "")">
+                          <a asp-action="Detail" asp-controller="New" asp-route-id="@newsItem.item.NewId">
+                              <img src="/img/@newsItem.item.Image" class="d-block w-100" alt="@newsItem.item.Tittle">
+                          </a>
+                      </div>
+                  }
+              </div>
+              <a class="carousel-control-prev" href="#newsCarousel1" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#newsCarousel1" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+              </a>
+          </div>
+      </div>
+
+      <div class="col-6">
+          <div id="newsCarousel2" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                  @for (int i = 0; i < Model.SecondRandomCategoryNews.Count; i++)
+                  {
+                      <li data-target="#newsCarousel2" data-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
+                  }
+              </ol>
+              <div class="carousel-inner">
+                  @foreach (var newsItem in Model.SecondRandomCategoryNews.Select((item, index) => new { item, index }))
+                  {
+                      <div class="carousel-item @(newsItem.index == 0 ? "active" : "")">
+                          <a asp-action="Detail" asp-controller="New" asp-route-id="@newsItem.item.NewId">
+                              <img src="/img/@newsItem.item.Image" class="d-block w-100" alt="@newsItem.item.Tittle">
+                          </a>
+                      </div>
+                  }
+              </div>
+              <a class="carousel-control-prev" href="#newsCarousel2" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#newsCarousel2" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+              </a>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <h3 class="text-center">Yazarlarımız</h3>
+        @foreach (var author in Model.Authors)
+        {
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+                <a asp-action="Profile" asp-controller="Users" asp-route-id="@author.UserId">
+                    <div class="author-card text-center">
+                        <img class="gorsel rounded-circle" src="https://www.mentalup.net/img/blog/gorsel-zeka-testi.jpg">
+                        <p>@author.User.FirstName</p>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+<div class="container">
+  <div class="row">
+      @foreach (var item in Model.AllNews)
+      {
+          <div class="col-12 col-sm-6 col-md-4 mb-4">
+              <div class="card mt-4">
+                  <a asp-action="Detail" asp-controller="New" asp-route-id="@item.NewId">
+                      <div class="card-img-container">
+                          <img class="card-img-top" src="/img/@item.Image" alt="Card image cap">
+                      </div>
+                      <div class="card-body">
+                          <h5 class="card-title">@item.Tittle</h5>
+                      </div>
+                  </a>
+              </div>
+          </div>
+      }
+  </div>
+</div>
+
+<style>
+
+.gorsel {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+.author-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.author-card p {
+    margin-top: 10px;
+}
+
+  .card-img-container {
+      position: relative;
+      width: 100%;
+      height: 200px; /* Adjust this height as needed */
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  .card-img-top {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+  }
+  .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+  }
+  .card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+  }
+  .carousel-item {
+      height: 400px; /* Adjust height as needed */
+      background-color: #000; /* Fallback color for images */
+  }
+  .carousel-item img {
+      object-fit: cover; /* Adjust this to fit your design needs */
+      height: 100%;
+  }
+  .carousel-caption {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+  }
+</style>
+
+@section Scripts {
+  <script>
+      $(document).ready(function() {
+          function loadLatestNews() {
+              $.ajax({
+                  url: '@Url.Action("GetLatestNews", "Home")', // 'Home' yerine controller adınızı yazın
+                  type: 'GET',
+                  success: function(data) {
+                      // Burada 'data' yeni haber verilerini içerir
+                      $('#latestNews').html(data);
+                  },
+                  error: function() {
+                      console.log('Haberler yüklenemedi');
+                  }
+              });
+          }
+
+          // İlk yükleme
+          loadLatestNews();
+
+          // 10 saniyede bir haberleri güncelle
+          setInterval(loadLatestNews, 10000);
+      });
+  </script>
+}

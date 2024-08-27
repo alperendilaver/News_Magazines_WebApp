@@ -1,0 +1,18 @@
+@model List<News.Data.Data.Models.New>
+
+<div class="row">
+    @foreach(var item in Model){
+        <div class="col-12 col-sm-12 col-md-12 mb-4 pt-0">
+            <div class="card mt-4">
+                <a asp-action="Detail" asp-controller="New" asp-route-id="@item.NewId">
+                    <div class="card-img-container">
+                        <img class="card-img-top" src="/img/@item.Image" alt="Card image cap">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Tittle</h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+</div>

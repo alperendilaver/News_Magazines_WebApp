@@ -1,0 +1,19 @@
+@model List<Author>
+
+    <div class="container">
+        <div class="row">
+            @foreach(var item in Model){
+                <div class="col-4 col-md-4 col-sm-12">
+                <div class="card" style="width: 18rem;">
+                  <a asp-action="Profile" asp-controller="Users" asp-route-id="@item.UserId">
+
+                    <img src="https://www.mentalup.net/img/blog/gorsel-zeka-testi.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-text">@item.User.FirstName</p>
+                    </div>
+                  </a>
+                  </div>
+                </div>
+            }
+        </div>
+    </div>

@@ -1,0 +1,35 @@
+@model IndexViewModel
+
+@foreach(var channel in Model.Channels){
+    <div class="col-4 col-md-4 col-sm-12 channel">
+        <div class="card">
+            <h5 class="card-header">@channel.ChannelName</h5>
+            <div class="card-body">
+              <h5 class="card-title">Yazar: @channel.Author.User.FirstName @channel.Author.User.LastName</h5>
+              <p class="card-text">Üye Sayısı: @channel.Members.Count()</p>
+            <div class="d-flex flex-row-reverse">
+
+                
+                
+                @if(Model.UserChannelIds.Any(x=>x == @channel.ChannelId) || User.FindFirstValue(ClaimTypes.Role) =="SuperAdmin"){
+                    <a asp-action="ChannelDetail" asp-controller="Channel" asp-route-ChannelId="@channel.ChannelId" class="btn btn-primary btn-sm">Kanala Git</a>
+                }else{
+
+                
+                @if(User.FindFirstValue(ClaimTypes.Role) =="Reader"){
+                    @if(Model.UserRequests.Any(x=>x==@channel.ChannelId)){
+                    <button class="btn btn-info text-light btn-sm">
+                        İsteğiniz Admin Onayında    
+                    </button>
+                    }else{
+                    <button data-channelid="@channel.ChannelId" type="button" class="btn btn-primary btn-sm sendRequest">
+                        Üyelik İsteği Gönder
+                    </button>
+                    }
+                }
+            }
+            </div>
+            </div>
+          </div>
+    </div>
+}

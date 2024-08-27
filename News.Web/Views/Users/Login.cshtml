@@ -1,0 +1,25 @@
+@model LoginViewModel
+<div class="container">
+    <div class="d-flex justify-content-center ">
+        <form asp-action="Login" asp-controller="Users" method="post" style="width: 40rem;">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="Mail" class="form-label">Email</label>
+                <input type="email" class="form-control" asp-for="Mail">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Parola</label>
+                <input type="password" class="form-control" asp-for="Password">
+            </div>
+            
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" asp-for="RememberMe">
+                <label class="form-check-label" asp-for="RememberMe">Beni Hatırla</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Giriş Yap</button>
+            
+            <a class="btn btn-secondary" asp-action="InputEmailForPasswordReset" asp-controller="Users">Parolamı Unuttum</a>
+            <a class="btn btn-success" asp-action="Register" asp-controller="Users">Hesabım Yok Kayıt Ol</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+C:\Users\Alperen\Desktop\dotnetmyprojects\news_magazines\news\News.Data\bin\Debug\net8.0\News.Data.deps.json
+C:\Users\Alperen\Desktop\dotnetmyprojects\news_magazines\news\News.Data\bin\Debug\net8.0\News.Data.runtimeconfig.json
+C:\Users\Alperen\Desktop\dotnetmyprojects\news_magazines\news\News.Data\bin\Debug\net8.0\News.Data.dll
+C:\Users\Alperen\Desktop\dotnetmyprojects\news_magazines\news\News.Data\bin\Debug\net8.0\News.Data.pdb
+C:\Users\Alperen\Desktop\dotnetmyprojects\news_magazines\news\News.Data\obj\Debug\net8.0\News.Data.csproj.AssemblyReference.cache
+C:\Users\Alperen\Desktop\dotnetmyprojects\news_magazines\news\News.Data\obj\Debug\net8.0\News.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Alperen\Desktop\dotnetmyprojects\news_magazines\news\News.Data\obj\Debug\net8.0\News.Data.AssemblyInfoInputs.cache
+C:\Users\Alperen\Desktop\dotnetmyprojects\news_magazines\news\News.Data\obj\Debug\net8.0\News.Data.AssemblyInfo.cs
+C:\Users\Alperen\Desktop\dotnetmyprojects\news_magazines\news\News.Data\obj\Debug\net8.0\News.Data.csproj.CoreCompileInputs.cache
+C:\Users\Alperen\Desktop\dotnetmyprojects\news_magazines\news\News.Data\obj\Debug\net8.0\News.Data.dll
+C:\Users\Alperen\Desktop\dotnetmyprojects\news_magazines\news\News.Data\obj\Debug\net8.0\refint\News.Data.dll
+C:\Users\Alperen\Desktop\dotnetmyprojects\news_magazines\news\News.Data\obj\Debug\net8.0\News.Data.pdb
+C:\Users\Alperen\Desktop\dotnetmyprojects\news_magazines\news\News.Data\obj\Debug\net8.0\News.Data.genruntimeconfig.cache
+C:\Users\Alperen\Desktop\dotnetmyprojects\news_magazines\news\News.Data\obj\Debug\net8.0\ref\News.Data.dll

@@ -1,0 +1,108 @@
+@model RequestListViewModel
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <h2 class="text-center mt-4">Gelen İstekler</h2>
+            
+            <!-- Tab Menüsü -->
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="wait-requests-tab" data-toggle="tab" href="#wait-requests" role="tab" aria-controls="wait-requests" aria-selected="true">Bekleyen İstekler</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="update-requests-tab" data-toggle="tab" href="#update-requests" role="tab" aria-controls="update-requests" aria-selected="false">Güncelleme İstekleri</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" id="category-requests-tab" data-toggle="tab" href="#category-requests" role="tab" aria-controls="category-requests" aria-selected="false">Yazar Kategori Değiştirme İstekleri</a>
+                </li>
+            </ul>
+            
+            <!-- Tab İçeriği -->
+            <div class="tab-content" id="myTabContent">
+
+                <!-- Bekleyen İstekler Listesi -->
+                <div class="tab-pane fade show active" id="wait-requests" role="tabpanel" aria-labelledby="wait-requests-tab">
+                    <table class="table table-bordered mt-4">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">İsteği Gönderen Kullanıcı</th>
+                                <th scope="col">Haber Başlığı</th>
+                                <th scope="col">İstek Tipi</th>
+                                <th scope="col" style="width: 12rem;">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var request in Model.WaitForPublish)
+                            {
+                                <tr>
+                                    <td><a href="/Users/Profile/@request.New.User.UserId"> @request.New.User.User.FirstName @request.New.User.User.LastName</a></td>
+                                    <td><a href="/New/Detail/@request.New.NewId">@request.New.Tittle</a></td>
+                                    <td>
+                                        Yayınlanmak İçin Bekleyen İstek
+                                    </td>
+                                    <td><a class="btn btn-success " asp-action="ConfirmRequest" asp-route-id="@request.NewId" asp-route-type="@request.RequestType">Onayla</a>
+                                    <a class="btn btn-danger"  asp-action="Delete" asp-controller="New" asp-route-NewId="@request.New.NewId">Reddet</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Güncelleme İstekleri Listesi -->
+                <div class="tab-pane fade" id="update-requests" role="tabpanel" aria-labelledby="update-requests-tab">
+                    <table class="table table-bordered mt-4">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">İsteği Gönderen Kullanıcı</th>
+                                <th scope="col">Haber Başlığı</th>
+                                <th scope="col">İstek Tipi</th>
+                                <th scope="col" style="width: 12rem;">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var request in Model.WaitForUpdate)
+                            {
+                                <tr>
+                                    <td><a href="/Users/Profile/@request.New.User.UserId"> @request.New.User.User.FirstName @request.New.User.User.LastName</a></td>
+                                    <td><a href="/New/Detail/@request.New.NewId">@request.New.Tittle</a></td>
+                                    <td>Güncellenmek için bekleyen istek</td>
+                                    <td><a class="btn btn-success " asp-action="ConfirmRequest" asp-route-id="@request.NewId" asp-route-type="@request.RequestType" >Onayla</a>
+                                        <a class="btn btn-danger" asp-action="Delete" asp-controller="New" asp-route-NewId="@request.New.NewId">Reddet</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+             
+             
+                <div class="tab-pane fade" id="category-requests" role="tabpanel" aria-labelledby="category-requests-tab">
+                    <table class="table table-bordered mt-4">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Kullanıcı Adı</th>
+                                <th scope="col">İstediği Kategori Tipi</th>
+                                <th scope="col" style="width: 12rem;">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var request in Model.CategoryRequests)
+                            {
+                                <tr class="CatItem">
+                                    <td><a href="/Users/Profile/@request.UserId">@request.User.FirstName @request.User.LastName </a></td>
+                                    <td>@request.Category.CategoryName</td>
+                                    <td><a class="btn btn-success " asp-action="ConfirmChangeCatRequest" asp-route-id="@request.UserId" asp-route-role="@request.CategoryId">Onayla</a>
+                                    <button type="button"  class="btn btn-danger rejectCatReq" data-reqid="@request.RequestId">Reddet</button></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        
+        </div>
+    </div>
+</div>

@@ -1,0 +1,199 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = News.Web
+build_property.RootNamespace = News.Web
+build_property.ProjectDir = C:\Users\Alperen\Desktop\dotnetmyprojects\news_magazines\News\News.Web\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Alperen\Desktop\dotnetmyprojects\news_magazines\News\News.Web
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Author/Category.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yXENhdGVnb3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Author/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Category/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Channel/ChannelDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbm5lbFxDaGFubmVsRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Channel/CreateChannel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbm5lbFxDcmVhdGVDaGFubmVsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Channel/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbm5lbFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Channel/ViewMembers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbm5lbFxWaWV3TWVtYmVycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Channel/ViewRequests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbm5lbFxWaWV3UmVxdWVzdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Editor/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdG9yXFByb2ZpbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Error/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/New/CreateNew.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3XENyZWF0ZU5ldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/New/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3XERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/New/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/New/FilteredNew.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3XEZpbHRlcmVkTmV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Shared/_AllNewRequestsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BbGxOZXdSZXF1ZXN0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Shared/_GetAllChannelsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9HZXRBbGxDaGFubmVsc1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Shared/_GetAllUserRequests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9HZXRBbGxVc2VyUmVxdWVzdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Shared/_GetChannelMemberCountPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9HZXRDaGFubmVsTWVtYmVyQ291bnRQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Shared/_GetChannelMemberRequestPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9HZXRDaGFubmVsTWVtYmVyUmVxdWVzdFBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Shared/_GetCommentsForNew.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9HZXRDb21tZW50c0Zvck5ldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Shared/_GetNotifiesPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9HZXROb3RpZmllc1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Shared/_GetNotifyPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9HZXROb3RpZnlQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Shared/_LatestNewsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXRlc3ROZXdzUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Shared/_RandomNewsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9SYW5kb21OZXdzUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/SuperAdmin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VwZXJBZG1pblxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/SuperAdmin/ViewCategories.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VwZXJBZG1pblxWaWV3Q2F0ZWdvcmllcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/SuperAdmin/ViewComments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VwZXJBZG1pblxWaWV3Q29tbWVudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/SuperAdmin/ViewNews.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VwZXJBZG1pblxWaWV3TmV3cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/SuperAdmin/ViewRequests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VwZXJBZG1pblxWaWV3UmVxdWVzdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/SuperAdmin/ViewUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VwZXJBZG1pblxWaWV3VXNlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/SuperAdmin/ViewWarnings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VwZXJBZG1pblxWaWV3V2FybmluZ3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Users/InputEmailForPasswordReset.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcSW5wdXRFbWFpbEZvclBhc3N3b3JkUmVzZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Users/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Users/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Users/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Users/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcUmVzZXRQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Users/ViewNotify.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcVmlld05vdGlmeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Alperen/Desktop/dotnetmyprojects/news_magazines/News/News.Web/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-finzdm23rv

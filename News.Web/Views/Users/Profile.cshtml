@@ -1,0 +1,129 @@
+@model User
+<head><link rel="stylesheet" href="\wwwroot\myCss\gridCss.css" asp-append-version="true"></head>
+
+
+<div class="container mx-auto" >
+<div class="row justify-content-center">
+<div class="col-8">
+    <div class="row justify-content-center">
+      <div class="col-2">
+        <img src="https://www.mentalup.net/img/blog/gorsel-zeka-testi.jpg" alt="yüklenemedi" style="width: 10px;">
+      </div>
+    </div>
+<div class="form-floating ">
+  <div class="row g-2">
+    <div class="col-md">
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInputDisabled" value="@Model.FirstName" disabled>
+        <label for="floatingInputDisabled">Ad</label>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInputDisabled" value="@Model.LastName" disabled>
+        <label for="floatingInputDisabled">Soyad</label>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-floating mb-3">
+  <input type="email" class="form-control" id="floatingInputDisabled" value="@Model.Email" disabled>
+  <label for="floatingInputDisabled">Mail Adresi</label>
+</div>
+<div class="form-floating mb-3">
+  <input type="text" class="form-control" id="floatingInputDisabled" value="@Model.PhoneNumber" disabled>
+  <label for="floatingInputDisabled">Telefon Numarası</label>
+</div>
+<div class="form-floating mb-3">
+  @{
+    var stat = @Model.IsEmailConfirmed ? "Onaylandı" : "Onaylanmadı" ;
+  }
+  <input type="text" class="form-control" id="floatingInputDisabled" value="@stat" disabled>
+  <label for="floatingInputDisabled">Email Adresi</label>
+</div>
+@if(Model.Author!=null){
+
+
+<div class="form-floating mb-3">
+  @if(Model.Author.Channel==null){
+    <a asp-action="CreateChannel" asp-controller="Channel" asp-route-UserId="@Model.UserId">Kendi Kanalını Oluştur</a>
+  }else{
+    <a asp-action="ChannelDetail" asp-controller="Channel" asp-route-ChannelId="@Model.Author.Channel.ChannelId">Kanalına Git</a>
+  }
+  @if(Model.Author.Channel != null){
+    <a asp-action="ViewRequests" asp-controller="Channel" asp-route-ChannelId="@Model.Author.Channel.ChannelId">Kanal İsteklerini Görüntüle</a>
+  }
+
+</div>
+}
+</div>
+</div>
+</div>
+
+@if(Model.Author!=null){
+<div class="container">
+  <div class="row">
+    
+    @foreach(var item in Model.Author.News){
+          <div class="col-12 col-sm-6 col-md-4 mb-4">
+         
+          <div class="card mt-5">
+            <a asp-action="Detail" asp-controller="New" asp-route-id="@item.NewId">
+              <div class="card-img-container">
+                <img class="card-img-top" src="/img/@item.Image" alt="Card image cap">
+            </div>
+              <div class="card-body">
+                <h5 class="card-title">@item.Tittle</h5>
+                
+                @if(User.Identity.IsAuthenticated && (User.FindFirstValue(ClaimTypes.NameIdentifier)==item.UserId.ToString())){
+
+                @if(item.IsActive==false){
+                  <a  class="btn btn-success" asp-action="PublishNew" asp-controller="New" asp-route-id="@item.NewId">Haberi Yayına Al</a>
+                }
+                else{
+                  <a  class="btn btn-danger"  asp-action="UnpublishNew" asp-controller="New" asp-route-id="@item.NewId">Haberi Yayından Kaldır</a>
+                  @if(User.FindFirstValue(ClaimTypes.Role)=="SuperAdmin"){
+                    <a  class="btn btn-outline-danger mt-2" asp-route-NewId="@item.NewId"  asp-action="Delete" asp-controller="New" asp-route-id="@item.NewId">Haberi Sil</a>
+                    
+                  }
+                }
+                }
+              </div>
+            </a>
+          </div>
+        </div>
+        }
+     
+      
+  </div>
+</div>
+}
+
+<style>
+  .card-img-container {
+      position: relative;
+      width: 100%;
+      height: 200px; /* Adjust this height as needed */
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  .card-img-top {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+  }
+  .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+  }
+  .card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+  }
+</style>

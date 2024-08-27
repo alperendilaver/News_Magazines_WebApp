@@ -1,0 +1,123 @@
+@model List<WarningComment>
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach(var item in Model){
+            <div class="col-3 col-md-3 col-sm-12 commentItem">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        @if(item.Type == "comment"){
+                            <p>
+
+                                Yorum: @item.Comment.Context
+                            </p>
+                        }
+                        else{
+                            <p>
+
+                                Yanıt:@item.CommentReply.Text
+                            </p>
+                        }
+                        </h5>
+
+                      <h6 class="card-subtitle mb-2 text-body-secondary text-muted">@if(item.Type=="comment")
+                        {<p>
+
+                            @item.Comment.PublishedDate.ToString("dd/MM/yyyy hh:mm")
+                        </p>
+                        }
+                        else{
+                            <p>
+
+                                @item.CommentReply.PublishedDate.ToString("dd/MM/yyyy hh:mm")
+                            </p>
+                        }</h6>
+                      <p class="card-text">
+                        @if(item.Type == "comment")
+                        {
+                            <p>
+
+                                Kullanıcı: @item.Comment.User.FirstName @item.Comment.User.LastName 
+                            </p>
+                        }
+                        else{
+                            <p>
+
+                                Kullanıcı: @item.CommentReply.User.FirstName @item.CommentReply.User.LastName 
+                            </p>
+                        }
+                        
+                        <br>
+                        Bildiren Kullanıcı: @item.User.FirstName @item.User.LastName</p>
+                        <p>Sebep: @item.Reason</p>
+                        <div class="d-flex  flex-row">
+
+                            <button type="button"  class="btn btn-primary btn-sm  processbtn ViewNew">Habere Git</button>
+                            
+                            @if(item.Type=="comment"){
+                                
+                                <button data-CommentId="@item.CommentId" data-type="@item.Type" class="btn btn-danger btn-sm DeleteComment processbtn" data-warningid="@item.WarnId">Yorumu Sil</button>
+                            }
+                            else{
+                                
+                                <button data-warningid="@item.WarnId" data-CommentId="@item.ReplyId" data-type="@item.Type" class="btn btn-danger btn-sm DeleteComment processbtn" >Yorumu Sil</button>
+                            }
+                            <button type="button" class="btn btn-outline-dark removeWarning btn-sm processbtn  " data-warningid="@item.WarnId">Uyarıyı Kaldır</button>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+        }
+    </div>
+</div>
+<style>
+    .processbtn{
+        margin-left: 5px;
+        padding: 3px;
+    }
+</style>
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+            $(".DeleteComment").click(function(){
+                var CommentId = $(this).data("commentid");
+                var WarningId = $(this).data("warningid")
+                var type=$(this).data("type");
+                console.log(CommentId,type)
+                var parentCard = $(this).closest(".commentItem");
+                $.ajax({
+                    url:'@Url.Action("DeleteComment","New")',
+                    type:'POST',
+                    data:{CommentId:CommentId,Type :type,WarningId:WarningId},
+                    success:function(response){
+                        console.log(response)
+                        $(parentCard).remove();
+                        toastr.success(response.message)
+                    },
+                    error:function(response){
+                        console.log(response);
+                        toastr.error(response.message)
+                    }
+                })
+
+            })
+            $(".removeWarning").click(function(){
+                var WarningId = $(this).data("warningid")
+                var parentCard = $(this).closest(".card");
+                $.ajax({
+                    url:'@Url.Action("RemoveWarning","Comment")',
+                    type:'POST',
+                    data:{WarningId:WarningId},
+                    success:function(response){
+                        parentCard.remove();
+                        toastr.success(response.message)
+                    },
+                    error:function(response){
+                        toastr.error(response.message)
+                    }
+                })
+            })
+        });
+    </script>
+}

@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="News.Web.Controllers.AuthorController">
+    <Position X="3.75" Y="2" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAQAABAAAAAAAAAAAAAAAAAAEEAAACCAA=</HashCode>
+      <FileName>Controllers\AuthorController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_categoryService" />
+      <Field Name="_requestService" />
+      <Field Name="_userService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="News.Web.Controllers.CategoryController">
+    <Position X="12.75" Y="16.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAACAAAAAAAAAEAAAAACAA=</HashCode>
+      <FileName>Controllers\CategoryController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_categoryService" />
+      <Field Name="_newService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="News.Web.Controllers.ChannelController">
+    <Position X="17.75" Y="5.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAgACAAAgABgEAAEMAgAAAABAEBEgICAAA=</HashCode>
+      <FileName>Controllers\ChannelController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_channelService" />
+      <Field Name="_requestService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="News.Web.Controllers.CommentController">
+    <Position X="8.25" Y="19.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAgAEAAAAEAAAAAABA=</HashCode>
+      <FileName>Controllers\CommentController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_commentService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="News.Web.Controllers.HomeController">
+    <Position X="9" Y="15.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACCAAAAAAAAAEEAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_userService" />
+      <Field Name="_newService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="News.Web.Controllers.NewController">
+    <Position X="13.25" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAIQAIEQAABAABAAoAACAEIAAAChIEEAAAACAA=</HashCode>
+      <FileName>Controllers\NewController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_categoryService" />
+      <Field Name="_imageService" />
+      <Field Name="_newService" />
+      <Field Name="_superAdminService" />
+      <Field Name="_userService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="News.Web.Controllers.SuperAdmin">
+    <Position X="8.5" Y="5.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAACIAJBAAYDQAABABZAAAAICAAgCQAABAEEAAACAAA=</HashCode>
+      <FileName>Controllers\SuperAdminController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_categoryService" />
+      <Field Name="_commentService" />
+      <Field Name="_newService" />
+      <Field Name="_requestService" />
+      <Field Name="_superAdminService" />
+      <Field Name="_userService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="News.Web.Controllers.UsersController">
+    <Position X="4.75" Y="13.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAiAAAEAABIAAAAAIACEEBAIACABEUAAAAAAA=</HashCode>
+      <FileName>Controllers\UsersController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_claimService" />
+      <Field Name="_newService" />
+      <Field Name="_tokenService" />
+      <Field Name="_userService" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="News.Data.Services.AbstractServices.IChannelService">
+    <Position X="17.5" Y="11" Width="2.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="News.Data.Services.AbstractServices.ICategoryService">
+    <Position X="4.25" Y="11" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="News.Data.Services.AbstractServices.IClaimService">
+    <Position X="5.5" Y="20" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="News.Data.Services.AbstractServices.ICommentService">
+    <Position X="9" Y="13" Width="2.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="News.Data.Services.AbstractServices.IEmailService">
+    <Position X="18.75" Y="2" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="News.Data.Services.AbstractServices.IHashService">
+    <Position X="17.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="News.Data.Services.AbstractServices.IImageService">
+    <Position X="18" Y="0.5" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="News.Data.Services.AbstractServices.INewService">
+    <Position X="14" Y="10.25" Width="2.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="News.Data.Services.AbstractServices.IRequestService">
+    <Position X="13.75" Y="6.25" Width="3.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="News.Data.Services.AbstractServices.ISuperAdminService">
+    <Position X="9" Y="2.75" Width="3" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="News.Data.Services.AbstractServices.ITokenService">
+    <Position X="9" Y="17.75" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="News.Data.Services.AbstractServices.IUserNotifyService">
+    <Position X="19.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="News.Data.Services.AbstractServices.IUserService">
+    <Position X="5.25" Y="5.75" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

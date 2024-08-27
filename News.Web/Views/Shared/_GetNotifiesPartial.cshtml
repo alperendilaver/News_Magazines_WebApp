@@ -1,0 +1,21 @@
+@model List<Notify>
+            @foreach(var item in Model){
+                <div class="col-6 col-md-6 col-sm-12">
+                    <div class="card @(item.IsSeen ? "bg-faded" : "")">
+                        <div class="card-body">
+                            <p class="card-text">
+                                @Html.Raw(item.Context)
+                            </p>
+                            <div class="d-flex flex-row-reverse">
+                                @if(!item.IsSeen){
+
+                                    <a class="btn btn-success btn-sm" data-notifyid="@item.NotifyId">Okundu Olarak İşaretle</a>
+                                }else{
+                                    <a  class="btn btn-danger btn-sm" data-notifyid="@item.NotifyId">Bildirimi Sil</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+

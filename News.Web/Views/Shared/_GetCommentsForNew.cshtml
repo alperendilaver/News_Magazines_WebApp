@@ -1,0 +1,135 @@
+@model News.Web.Models.New.DetailViewModel
+@{
+    var role = User.FindFirstValue(ClaimTypes.Role);
+}
+
+@foreach(var comm in Model.Comments){
+    <div class="row mb-3">
+        <input type="hidden" class="comId" value="@comm.CommentId">
+        <input type="hidden" class="ComUserId" value="@comm.User.UserId">
+        <div class="col-5">
+           <p class="fs-5 mb-1 userName"> @comm.User.FirstName  @comm.User.LastName:</p>
+            <p class="fst-normal commentText">@comm.Context</p>
+            <p class="fw-light">@comm.PublishedDate.ToString("dd/MM/yyyy HH:mm")</p>
+        </div>
+        <div class="d-flex flex-row-reverse">
+            <div class="commentsItem d-flex  warningForm" data-commentid="@comm.CommentId" >
+                <div>
+                    <p class="fw-light Warning  "data-commentid="@comm.CommentId">Yorumu Bildir</p>
+                    <div class="warningItems "style="display: none !important;" data-commentid="@comm.CommentId">
+                        <textarea class="form-control WarningReason" placeholder="Sebebini Yazınız" ></textarea>
+                        <button class="btn btn-sm btn-outline-dark btnWarn mt-1 mb-1" data-type="comment" data-commentid="@comm.CommentId" >Yöneticiye Bildir</button>
+                    </div>
+                </div>
+                <a class="AddWarning" data-CommentId="@comm.CommentId"><i class='bx bx-error'></i></a>
+
+            </div>
+            <div class="commentsItem d-flex">
+                <p class="fw-light ReplyCount">
+                    @comm.ReplyCount
+                </p>
+
+                @if(User.Identity.IsAuthenticated){
+                    if(role=="Reader"){
+
+                        <a class="ShowReplyForm" data-commentid="@comm.CommentId"><i class="bx bx-reply" ></i></a>
+                    }else{
+                        <a ><i class="bx bx-reply" ></i></a>
+                    }
+                }
+                else{
+                    <a ><i class="bx bx-reply" ></i>
+                        yanıt yazmak için giriş yapmalısınız</a>
+                   
+                }
+
+            </div>
+            <div class="commentsItem d-flex">
+                <p class="fw-light DisslikeCount">
+                    @comm.DisslikeCount
+                </p>
+                @if(role=="Reader"){
+                    <a class="addReaction" data-replyorcomm="comment" data-type="false" data-comment-id="@comm.CommentId"><i class="bx bx-dislike"></i></a>
+                }else{
+                    <a >
+
+                        <i class="bx bx-dislike"></i>
+                    </a>
+                }
+                
+            </div>
+          
+            <div class="commentsItem d-flex">
+                <p class="fw-light LikeCount">
+                    @comm.LikeCount
+                </p>
+                @if(role=="Reader"){
+
+                    <a class="addReaction" data-replyorcomm="comment" data-type="true" data-comment-id="@comm.CommentId"><i class="bx bx-like"></i></a>
+                }else{
+                    <a><i class="bx bx-like"></i>
+                    </a>
+                }
+
+                
+           
+            </div>
+        </div>
+        <div class="d-flex align-items-end flex-column" id="AddReply" data-commentid="@comm.CommentId" style="display: none !important;">
+            <div class="SendForm d-flex  align-items-end flex-column" style="width: 60%">
+                <textarea class="form-control mb-2 ReplyContext"    ></textarea>
+                <button  class="btn btn-success btn-sm mb-2  SendReplyButton">Yanıtı Gönder</button>
+
+                
+            </div>
+            
+        </div>
+        <div class="ShowReplies" style="text-align: start;">
+            @foreach(var reply in comm.Replies){
+                <div class="row">
+                    <div class="col-1 ">
+                        <i class='bx bx-subdirectory-right'></i>
+                    </div>
+                    <div class="col-11">
+
+                        <div class="row mb-3 replyrow ">
+                            <input type="hidden" class="ReplyId" value="@reply.ReplyId">
+                            <div class="col-12 ml-auto" >
+                                <p class="fs-5 mb-1"> @reply.User.FirstName  @reply.User.LastName:</p>
+                                <p class="fst-normal">@reply.Text</p>
+                                <p class="fw-light">@reply.PublishedDate.ToString("dd/MM/yyyy HH:mm")</p>
+                            </div>
+                            <div class="d-flex flex-row-reverse">
+                                <div class="repliesItem d-flex">
+                                    <div>
+                                        <p class="fw-light Warning ">Yorumu Bildir</p>
+                                        <textarea class="form-control WarningReason" placeholder="Sebebini Yazınız" style="display: none;"></textarea>
+                                        <button class="btn btn-sm btn-outline-dark btnWarn mt-1 mb-1" data-type="reply" data-comment-id="@reply.ReplyId" style="display: none;">Yöneticiye Bildir</button>
+                                    </div>
+                                    <a class="AddWarning" data-CommentId="@reply.ReplyId"><i class='bx bx-error'></i></a>
+    
+                                </div>
+                                <div class="commentsItem d-flex">
+                                    <p class="fw-light DisslikeCount">
+                                        @reply.DisslikeCount
+                                    </p>
+                                    <a class="addReaction" data-type="false"  data-replyorcomm="reply" data-comment-id="@reply.ReplyId"><i class="bx bx-dislike"></i></a>
+                                </div>
+                              
+                                <div class="commentsItem d-flex">
+                                    <p class="fw-light LikeCount">
+                                        @reply.LikeCount
+                                    </p>
+                                    <a class="addReaction" data-type="true" data-replyorcomm="reply" data-comment-id="@reply.ReplyId"><i class="bx bx-like"></i></a>
+                                    
+                               
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <hr style="border: none; border-top: 0.5px solid #797272">
+    </div>
+}

@@ -1,0 +1,54 @@
+@model RequestListViewModel
+
+<div id="latestUsers">
+    @await Html.PartialAsync("_AllNewRequestsPartial", Model)
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            function loadLatestNews() {
+                var activeTab = $('a.nav-link.active').attr('id');
+                $.ajax({
+                    url: '@Url.Action("GetAllNewRequests", "SuperAdmin")', // 'Home' yerine controller adınızı yazın
+                    type: 'GET',
+
+                    success: function(data) {
+                        // Burada 'data' yeni haber verilerini içerir
+                        $('#latestUsers').html(data);
+
+                        $('a.nav-link#' + activeTab).tab('show');
+                    },
+                    error: function() {
+                        console.log('Haberler yüklenemedi');
+                    }
+                });
+            }
+  
+            $(document).on('click', '.rejectCatReq', function() {
+                var reqId = $(this).data("reqid");
+                var parentTr = $(this).closest(".CatItem")
+                console.log(reqId);
+                $.ajax({
+                    url: '@Url.Action("DeleteCatRequest", "SuperAdmin")',
+                    data: { ReqId: reqId },
+                    type: 'POST',
+                    success: function(response) {
+                        toastr.success(response.message);
+                        $(parentTr).remove()
+                    },
+                    error: function(response) {
+                        toastr.error(response.message);
+                    }
+                });
+            }); 
+            // İlk yükleme
+            loadLatestNews();
+  
+            // 10 saniyede bir haberleri güncelle
+            setInterval(loadLatestNews, 10000);
+        });
+    </script>
+  }
+
+  

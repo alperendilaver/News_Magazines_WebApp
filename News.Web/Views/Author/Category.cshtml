@@ -1,0 +1,65 @@
+@model User
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            <div class="mb-3">
+                @if (Model.Author != null && Model.Author.Category != null)
+                {
+                    <label for="Categories">Kategorileriniz</label>
+                    <select name="Categories" id="" class="form-control" aria-readonly="true" asp-items="@ViewBag.AuthorCategories"></select>
+                }
+                else
+                {
+                    <label for="Category" class="form-label">Kategoriniz: Belirtilmemiş </label>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="ChangeCategory">Kategori Seç</label>
+                <select name="ChangeCategory" id="ChangeCategory" class="form-control" asp-items="@ViewBag.Categories">
+                </select>
+
+                <button type="button" class="btn btn-primary mt-2" id="SentRequestToAdmin">Kategori Değiştirme isteğini admine gönder</button>
+            </div>
+        </div>
+        <div class="col-7">
+            <!--burada kullanıcının haberleri listelensin-->
+            <div class="row">
+                <p class="text"> Haberlerin</p>
+                @foreach (var item in Model.Author.News)
+                {
+                    <div class="col-12 col-sm-6 col-md-4 mb-4">
+                        <div class="card mt-4">
+                            <a asp-action="Detail" asp-controller="New" asp-route-id="@item.NewId">
+                                <div class="card-img-container">
+                                    <img class="card-img-top" src="/img/@item.Image" alt="Card image cap">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.Tittle</h5>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+    
+    @section Scripts{
+        <script>
+            $(document).ready(function(){
+                $("#SentRequestToAdmin").click(function(){    
+                    var categoryId = $('#ChangeCategory').val();
+                    var userId = "@Model.UserId";
+                    console.log(categoryId,userId);
+                    $.ajax({
+                        type:'POST',
+                        url:'@Url.Action("SendChangeCategoryRequest", "Author")',
+                        contentType: 'application/json',
+                        data: JSON.stringify({ UserId: userId, CatId: categoryId }),
+                        success:alert("talep iletildi")
+                    })
+                });
+            });
+            </script>
+}

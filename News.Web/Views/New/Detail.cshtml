@@ -1,0 +1,475 @@
+@model News.Web.Models.New.DetailViewModel
+
+@{
+    var filename = Model.New.Image;
+    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var userName = $"{Model.New.User.User.FirstName} {Model.New.User.User.LastName}";
+    var role = User.FindFirstValue(ClaimTypes.Role);
+}
+
+<div class="containers">
+    <div class="row">
+        <div class="col-8">
+
+        <div class="card-columns">
+            <div class="card">
+                <div class="row">
+                    <div class="col-6">
+                        <img class="card-img-top" src="/img/@filename" alt="Image">
+                    </div>
+                <div class="col-6">
+                    <div class="card-body">
+                        
+                        <h3 class="card-text">@Model.New.Tittle</h3>
+                        <hr>
+                        <a asp-action="Profile" asp-controller="Users" asp-route-id="@Model.New.UserId">
+                            <h5 class="card-title" id="userIdTitle">Yazar: @userName</h5>
+                        </a>
+                        <hr>
+                        <p class="card-text">
+                            
+                            <p>Tarih : @Model.New.PublishedTime <br></p>
+                            <p><a asp-action="Detail" asp-controller="Category" asp-route-id="@Model.New.Category.CategoryId"> Kategori : @Model.New.Category.CategoryName</a></p>
+                        </p>
+
+
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-body">
+                        <p class="card-text">
+                            @Html.Raw(Model.New.Context)
+                        </p>
+                        <div class="d-flex justify-content-end">
+                            
+                            @if (Model.New.User.User.FirstName == User.FindFirstValue(ClaimTypes.Name))
+                            {
+                                <a class="btn btn-outline-primary btn-sm mt-4" asp-action="Edit" asp-route-id="@Model.New.NewId">Gönderiyi Düzenle</a>
+                            }
+                        </div>
+                        
+                            <div class="NewReactions d-flex flex-row-reverse">
+                                <div class="NewItem d-flex">
+                                    <p class="fw-light NewDisslikeCount">
+                                        @Model.New.DisslikeCount
+                                    </p>
+                                    @if(role=="Reader"){
+                                        <a class="AddReactionToNew"  data-type="false" data-newid="@Model.New.NewId"><i class="bx bx-dislike"></i></a>
+                                    }else{
+                                        <a><i class="bx bx-dislike"></i></a>
+                                    }
+                                </div>
+                                
+                                <div class="NewItem d-flex">
+                                    <p class="fw-light NewLikeCount">
+                                        @Model.New.LikeCount
+                                    </p>
+                                    @if(role=="Reader"){
+                                        <a class="AddReactionToNew" data-type="true" data-newid="@Model.New.NewId"><i class="bx bx-like"></i></a>
+                                    }else{
+                                        <a ><i class="bx bx-like"></i></a>
+                                    }
+
+                                </div>
+                            </div>
+                        
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="Comments" style="background-color: white;">
+            <div class="form-group p-3">
+                @if((User.Identity.IsAuthenticated)&&(role=="Reader")){   
+                    <div class="mb-3 ">
+                        <textarea class="form-control mb-3" id="Context" name="Context" placeholder="Yorumunuzu Yazın"></textarea>
+                        <input type="hidden" id="NewId" name="NewId" value="@Model.New.NewId">
+                        <input type="hidden" id="UserId" name="UserId" value="@currentUserId">
+                        <button type="button" class="btn btn-success btn-sm CreateComment">Yorumu Kaydet</button>
+                    </div>
+                
+                    }
+                else{
+                    if(role!="Reader"){
+                        <p class="fs-5">EDİTÖR VE YAZARLAR YORUM YAPAMAZ</p>
+                    }else{
+                        <p class="fs-5">YORUM YAPABİLMEK İÇİN GİRİŞ YAPMALISINIZ</p>
+                    
+                    }
+                    
+                }
+                </div>
+                <div class="ShowComments p-3">
+                    @await Html.PartialAsync("_GetCommentsForNew",Model)
+                </div>
+
+                
+        </div>
+    </div>
+    <div class="col-4">
+        @await Html.PartialAsync("_RandomNewsPartial",Model.RandomNews)    
+     </div>   
+</div>
+    
+    
+    
+</div>
+<style>
+.NewItem{
+    margin-top: 20px;
+    margin-left: 15px;
+    font-size: x-large;
+}
+.ShowReplies{
+    margin-left: 2%;
+}
+  .containers {
+    padding: 15px;
+}
+.DisslikeCount, .LikeCount, .ReplyCount, .Warning{
+    margin-right: 5px;
+}
+.card-columns .card {
+    margin-bottom: 20px;
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+}
+.commentsItem{
+    padding-left: 13px;
+    
+}
+.card-body {
+    padding: 15px;
+}
+
+.card-text {
+    margin-bottom: 10px;
+}
+
+#userIdTitle {
+    margin-bottom: 10px;
+}
+
+.card-title {
+    margin-bottom: 10px;
+}
+
+.btn-outline-dark {
+    margin-top: 20px;
+}
+.bx-subdirectory-right{
+    padding-left: 50%;
+    padding-top: 50%;
+}
+
+</style>
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+            sessionStorage.clear(); 
+            function loadLatestNews() {
+                $.ajax({
+                    url: '@Url.Action("GetRandomNew", "New")',
+                    type: 'GET',
+                    success: function(data) {
+                        $('.col-4').html(data);
+                    },
+                    error: function() {
+                        console.log('Haberler yüklenemedi');
+                    }
+                });
+            }
+
+            // Tıklama olayını dinle
+            $(document).on("click", ".addReaction", function(e){
+                var userId = "@currentUserId";
+                
+                if(userId == ""){
+                   alert("Tepki eklemek için giriş yapmalısınız")
+                    return false
+                }
+                    e.preventDefault(); // Sayfanın yenilenmesini engelle
+                var type = $(this).data("type");
+                var commentId = $(this).data("comment-id");
+                var commorrepl =$(this).data("replyorcomm");
+                 // `.closest` ve `.find` kullanarak doğru elemana erişim sağlama
+                var parentRow = $(this).closest(".row");
+                var likeCountElem = parentRow.find(".LikeCount").first();
+                var disslikeCountElem = parentRow.find(".DisslikeCount").first();
+                $.ajax({
+                    url: '@Url.Action("AddReactionToComment", "New")',
+                    type: 'POST',
+                    data: {
+                        ComId: commentId,
+                        ReactionType: type,
+                        ComType : commorrepl
+                    },
+                    success: function(result) {
+                 
+                        console.log(result);
+                        
+                            likeCountElem.text(result.likeCount);
+                        
+                            disslikeCountElem.text(result.disslikeCount);
+                            toastr.success(result.message)
+                        
+                    },
+                    error: function(result) {
+                        console.log(result);
+                        toastr.error(result.message)
+                    }
+                });
+            });
+            $(document).on("click",".CreateComment",function(){
+                var context=$("#Context").val();
+                var UserId=$("#UserId").val();
+                var NewId=$("#NewId").val();
+                $.ajax({
+                    url: '@Url.Action("AddComment", "New")',
+                    type: 'POST',
+                    data:{
+                        Context:context,
+                        NewId:NewId,
+                        UserId:UserId
+                    },
+                    success:function(response){
+                        
+                        toastr.success(response.message);
+                        $(".ShowComments").prepend(`<div class="row mb-3">
+                        <div class="col-5">
+                           <p class="fs-5 mb-1"> ${response.userName}:</p>
+                            <p class="fst-normal">${response.context}</p>
+                            <p class="fw-light">${response.publishedDate}</p>
+                        </div>
+                        <div class="d-flex flex-row-reverse">
+                            <div class="commentsItem d-flex  warningForm">
+                                <div>
+                                    <p class="fw-light Warning ">Yorumu Bildir</p>
+                                    <div class="warningItems" style="display: none;">
+                                        <textarea class="form-control WarningReason" placeholder="Sebebini Yazınız" ></textarea>
+                                        <button class="btn btn-sm btn-outline-dark btnWarn mt-1 mb-1" data-type="comment" data-comment-id="${response.commentId}" >Yöneticiye Bildir</button>
+                                    </div>
+                                </div>
+                                <a class="AddWarning" data-CommentId="${response.commentId}"><i class='bx bx-error'></i></a>
+
+                            </div>
+                            <div class="commentsItem d-flex">
+                                <p class="fw-light ReplyCount">
+                                   0
+                                </p>
+
+                                @if(User.Identity.IsAuthenticated){
+                                    if(role=="Reader"){
+
+                                        <a class="ShowReplyForm" ><i class="bx bx-reply" ></i></a>
+                                    }else{
+                                        <a ><i class="bx bx-reply" ></i></a>
+                                    }
+                                }
+                                else{
+                                    <a ><i class="bx bx-reply" ></i>
+                                        yanıt yazmak için giriş yapmalısınız</a>
+                                   
+                                }
+
+                            </div>
+                            <div class="commentsItem d-flex">
+                                <p class="fw-light DisslikeCount">
+                                    0
+                                </p>
+                                <a class="addReaction" data-type="false" data-replyorcomm="comment" data-type="false" data-comment-id="${response.commentId}"><i class="bx bx-dislike"></i></a>
+                            </div>
+                          
+                            <div class="commentsItem d-flex">
+                                <p class="fw-light LikeCount">
+                                    0
+                                </p>
+                                <a class="addReaction" data-type="true"  data-replyorcomm="comment" data-type="true" data-comment-id="${response.commentId}"><i class="bx bx-like"></i></a>
+
+                           
+                            </div>
+                        </div>
+                        <hr style="border: none; border-top: 0.5px solid #797272">
+                    </div>`)
+                    },
+                    error:function(response){
+                        console.log(response);
+                        toastr.error(response.message)
+                    }
+
+                })
+            });
+            $(document).on("click",".ShowReplyForm",function(){
+                var parentRow = $(this).closest(".row");
+                var commentId=$(this).data("commentid");
+                var AddReplyForm = parentRow.find("#AddReply");
+                var showReply = parentRow.find(".ShowReplies");
+                $(AddReplyForm).show(2000);
+                sessionStorage.setItem('isReplyOpen_' + commentId, 'true');
+            });
+           
+            $(document).on("click",".SendReplyButton",function(){
+                var parentRow = $(this).closest(".row");
+                var context = parentRow.find(".ReplyContext").val();
+                var commentId = parentRow.find(".comId").val();
+                var showReplies = parentRow.find(".ShowReplies");
+                var AddReplyForm = parentRow.find(".SendForm");
+                var commentUser= $(this).closest(".ComUserId");
+                var UserId=parentRow.find(".ComUserId").val();
+                var comment= parentRow.find(".commentText").first().text();
+                var userName= "@User.FindFirstValue(ClaimTypes.Name)  @User.FindFirstValue(ClaimTypes.GivenName)";
+                var NewId = "@Model.New.NewId"
+               $(parentRow).find(".ReplyContext").hide(1000);
+               
+               $(parentRow).find(".SendReplyButton").hide(1000);
+                $(AddReplyForm).hide(1000);
+                $.ajax({
+                    url : '@Url.Action("AddReplyToComment","New")',
+                    type:'POST',
+                    data : {CommentId :commentId , Context:context,UserId:"@currentUserId",CommentUserId:UserId,Comment:comment,UserName:userName,NewId:NewId},
+                    success:function(response){
+                        sessionStorage.setItem('isReplyOpen_' + commentId, 'false');
+                        console.log(UserId)
+                        console.log(response);
+                        console.log(comment)
+                        toastr.success(response.message)
+                        $(showReplies).append(`
+                        <div class="row">
+                                    <div class="col-1 ">
+                                        <i class='bx bx-subdirectory-right'></i>
+                                    </div>
+                                    <div class="col-11">
+                                        <div class="row mb-3 replyrow ">
+                                            <input type="hidden" class="ReplyId" value="${response.replyId}">
+                                            <div class="col-12 ml-auto" >
+                                                <p class="fs-5 mb-1"> ${response.userName}:</p>
+                                                <p class="fst-normal">${response.text}</p>
+                                                <p class="fw-light">${response.publishedDate}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`
+                        )
+                    },
+                    error:function(response){
+                        console.log(response);
+                    }
+                })
+            })
+           
+           
+            $(document).on("click",".btnWarn",function(){
+                var parent = $(this).closest(".commentsItem")
+                var CommentId =$(this).data("commentid")
+                var reason = $(parent).find(".WarningReason").val();
+                var userId= "@currentUserId"
+                var type = $(this).data("type")
+                $(parent).find(".WarningReason").hide(1000);
+                $(parent).find(".btnWarn").hide(1000);
+                $(parent).find(".WarningReason").val("");
+                sessionStorage.setItem('isTextareaOpen_' + CommentId, 'false');
+                console.log(CommentId,reason,type)
+                $.ajax({
+                    url:'@Url.Action("SendWarningForComment","Comment")',
+                    data :{CommentId : CommentId ,reason:reason,UserId:userId,type:type},
+                    type:'POST',
+                    success:function(response){
+                        console.log(response);
+                        toastr.success(response.message)
+                        
+                    },
+                    error:function(response){
+                        console.log(response);
+                        toastr.error(response.message)
+                    }
+                })
+            });
+            $(document).on("click",".Warning",function(){
+                var input=$(this).closest(".d-flex");
+                var commentId = $(this).data("commentid")
+                $(input).find(".warningItems").show(1000);
+                $(input).find(".WarningReason").show(1000);
+                $(input).find(".btnWarn").show(1000);
+                sessionStorage.setItem('isTextareaOpen_' + commentId, 'true');
+            });
+            function showreplyform(){
+                
+                $("#AddReply").each(function(){
+                    var commentId = $(this).data("commentid");
+                    var items = $(this).find(".SendForm[data-commentid='"+ commentId +"']");
+                    if(sessionStorage.getItem('isReplyOpen_' + commentId)=='true'){
+                        items.show();
+                    }
+                    
+                })
+            }
+            function showwarningform(){
+            $(".warningForm").each(function() {
+                var commentId = $(this).data("commentid");
+                var warningItems = $(this).find(".warningItems[data-commentid='" + commentId + "']");
+                var commentId = $(this).data("commentid");
+               
+                if (sessionStorage.getItem('isTextareaOpen_' + commentId) === 'true') {
+                   
+                    warningItems.show();
+                }
+                else{
+               
+                    warningItems.hide();
+                }
+            });
+        }
+            $(document).on("click",".AddReactionToNew",function(){
+                var NewId = $(this).data("newid");
+                var UserId = "@currentUserId";
+                var IsLike = $(this).data("type");
+                $.ajax({
+                    url:'@Url.Action("AddReactionToNew","New")',
+                    type:'POST',
+                    data:{NewId:NewId , UserId :UserId,IsLike :IsLike},
+                    success:function(response){
+                        console.log("BASARILI",response)
+                        $(".NewLikeCount").text(response.likecount);
+                        $(".NewDisslikeCount").text(response.disslikecount);
+                        toastr.info(response.message);
+                    },
+                    error:function(response){
+                        console.log(response);
+                    }
+                })
+            });
+            function getComments(){
+                
+                $.ajax({
+                    url:'@Url.Action("GetCommentsForNew","New")',
+                    type:'GET',
+                    data:{NewId:"@Model.New.NewId"},
+                    success:function(data){
+                        console.log("yorumlar geldi")
+                        $(".ShowComments").html(data);
+                    }
+                })
+                
+            }
+            showreplyform();
+            setInterval(showreplyform,1500)
+            showform();
+            setInterval(showwarningform,1500)
+            getComments
+            setInterval(getComments,10000)
+            // İlk yükleme
+            
+            loadLatestNews();
+            // 10 saniyede bir haberleri güncelle
+            setInterval(loadLatestNews, 10000);
+        });
+    </script>
+}

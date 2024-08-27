@@ -1,0 +1,233 @@
+﻿@{var RoleName = User.FindFirstValue(ClaimTypes.Role);}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - news</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/news.styles.css" asp-append-version="true" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-dark bg-dark fixed-top">
+            <div class="container-fluid">
+              <a class="navbar-brand" asp-action="Index" asp-controller="Home">Haberler</a>
+              <div class="d-flex  justify-content-center flex-grow-1">
+                <ul class="navbar-nav  d-flex flex-row justify-content-center">
+                    <li class="nav-item  mx-3">
+                        <a class="nav-link cats text-light" href="#"><p class="fw-bold fs-6">SON DAKİKA</p></a>
+                    </li>
+                    <li class="nav-item  mx-3">
+                        <a class="nav-link cats text-light" href="#"><p class="fw-bold fs-6">EKONOMİ</p></a>
+                    </li>
+                    <li class="nav-item  mx-3">
+                        <a class="nav-link cats text-light" href="#"><p class="fw-bold fs-6">SPOR</p></a>
+                    </li>
+                    <li class="nav-item  mx-3">
+                        <a class="nav-link  cats text-light" href="#"><p class="fw-bold fs-6">MAGAZİN</p></a>
+                    </li>
+                    <li class="nav-item  mx-3">
+                        <a class="nav-link  cats text-light" href="#"><p class="fw-bold fs-6">SİYASET</p></a>
+                    </li>
+                    
+                </ul>
+
+            </div>  
+              <ul class="navbar-nav ms-auto">
+                <div class="d-flex flex-row-reverse">
+
+                     @if(!User.Identity.IsAuthenticated){
+                    <li class="nav-item mt-3">
+                        <a asp-action="Login" asp-controller="Users" class="nav-link text-light  fs-6">Giriş Yap</a>
+                        
+                    </li>
+                    }
+                    @if(User.Identity.IsAuthenticated){
+
+                        <div class="d-flex flex-row-reverse personitems flex-column">
+                            <li class="nav-item nav-icon">          
+                                <a class="d-flex" asp-action="ViewNotify" asp-controller="Users" asp-route-UserId="@User.FindFirstValue(ClaimTypes.NameIdentifier)">
+                                    <div class="d-flex notify">
+                                        <box-icon class="bell" name='bell' color='#fdf8f8' ></box-icon>
+                                        <p class="notifyCount text-light">
+                                                @await Html.PartialAsync("_GetNotifyPartial")
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item nav-icon">
+                                <a href="/Channel/ViewRequests?UserId=@User.FindFirstValue(ClaimTypes.NameIdentifier)" class="d-flex ">
+                                    <div class="d-flex hand-up">
+                                        <i class="fa-regular fa-hand-point-up" style="color: #ffffff;"></i><p class="memreqcount text-light">
+                                            @await Html.PartialAsync("_GetChannelMemberRequestPartial")     
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item nav-icon"> 
+                                    <a href="/Channel?UserId=@User.FindFirstValue(ClaimTypes.NameIdentifier)" class="d-flex text nav-link">
+                                        <div class="d-flex ">
+                                            <i class="fa-solid fa-user-group" style="color: #ffffff;"></i><p class="text-light">
+                                            </p>
+                                                
+                                        </div>
+                                        <!--GRUP SİMGESİ FALAN YAP-->
+                                </a>
+                            </li>
+                            <li class="nav-item nav-icon">
+                                <a class="text nav-link " href="/users/profile/@User.FindFirstValue(ClaimTypes.NameIdentifier)">
+                                    <i class="fa-regular fa-circle-user" style="color: #ffffff;"></i>
+                                </a>
+                            </li>
+                            @if(User.FindFirstValue(ClaimTypes.Role)=="Author"){
+
+                                <li class="nav-item nav-icon">
+                                    <a class="text nav-link" href="/Channel/ChannelDetail?UserId=@User.FindFirstValue(ClaimTypes.NameIdentifier)">
+                                        <div class="d-flex enterGroup">
+                                            <i class="fa-solid fa-door-open" style="color: #ffffff;"></i>
+                                        </div>
+                                    </a>
+                                </li>
+                            }
+                            <li class="nav-item nav-icon">
+                                <a class="text nav-link">
+                                    @User.FindFirstValue(ClaimTypes.Role)
+                                </a>
+                            </li>
+                          
+                        </div>
+                    }
+                    <li class="nav-item mx-6">
+                        <div class="input-group search mb-3">
+                            <form action="/New/FilteredNew" method="get">
+                                <div class="input-group">
+                                    <button class="btn btn-outline-secondary" type="submit" ><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></button>
+                                    <input type="text" class="form-control" placeholder="Haber Ara" name="filter" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                </div>
+    
+                            </form>
+                        </div>
+                    </li>
+                    
+                </div>
+                
+                
+                </ul>
+            
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menü</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            @if(RoleName == "SuperAdmin"){        
+                            <li class="nav-item">
+                                    <li><a class="nav-link mb-4 btn btn btn-lg text-dark"style="text-align: left;" asp-action="ViewUsers" asp-controller="SuperAdmin">Editörleri Görüntüle</a></li>
+                                    
+                                    <li><a class="nav-link mb-4 btn btn-lg text-dark"style="text-align: left;" asp-action="ViewCategories" asp-controller="SuperAdmin" class="dropdown-item">Kategorileri Listele</a></li>
+                                    
+                                    <li><a class="nav-link mb-4 btn btn-lg text-dark"  style="text-align: left;"asp-action="ViewNews" asp-controller="SuperAdmin" class="dropdown-item">Haberleri Listele</a></li>
+                                    
+                                    <li><a  class="nav-link mb-4 btn btn-lg text-dark" style="text-align: left;" asp-action="ViewRequests" asp-controller="SuperAdmin" class="dropdown-item">İstekleri Listele</a></li>
+
+                                    <li><a  class="nav-link mb-4 btn btn-lg text-dark" style="text-align: left;" asp-action="ViewComments" asp-controller="SuperAdmin" class="dropdown-item">Yorumları Görüntüle</a></li>
+                                    
+                                    <li><a  class="nav-link mb-4 btn btn-lg text-dark" style="text-align: left;" asp-action="ViewWarnings" asp-controller="SuperAdmin" class="dropdown-item">Uyarıları Görüntüle</a></li>
+                                    
+                                    
+                                </li>
+                            }
+                            @if(RoleName == "Editor" || RoleName == "Author"){
+                            <li class="nav-item">
+                                    <li><a class="nav-link text-dark" asp-action="CreateNew" asp-controller="New">Yeni Haber Yaz</a></li>
+                                    @if (RoleName=="Author"){
+                                        <li><a class="nav-link text-dark" asp-action="Category" asp-controller="Author" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Kategori Seç veya Değiştirme Talebinde Bulun</a></li>
+                                        
+                                    }
+                                </li>
+                            }
+                            
+                            <li class="nav-item">
+                                <a class="nav-link text-dark"style="text-align: left; text-sm" asp-action="Index" asp-controller="Category">Kategorileri Listele</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-action="Index" asp-controller="Channel" asp-route-UserId="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Kanalları Gör</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a asp-action="Logout" asp-controller="Users" class="text text-dark nav-link">Çıkış Yap</a>
+                            </li>
+                            
+                        </ul>
+                        
+                    </div>
+                </div>
+        
+            </div>
+          </nav>
+    </header>
+    <div class="container mt-5 pt-5">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"></script>
+    <script src="https://kit.fontawesome.com/5531a51b15.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tiny.cloud/1/jaxyo0ycaon1l1ninw4wdqif7hblr82xmg8nkvdskbi449ev/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await Component.InvokeAsync("Notyf")
+    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        $(document).ready(function(){
+            function getReq(){
+                $.ajax({
+                    url:'@Url.Action("NotifyCount","Channel")',
+                    data:{UserId:"@User.FindFirstValue(ClaimTypes.NameIdentifier)"},
+                    type:'GET',
+                    success:function(data){
+                        
+                        $(".notifyCount").text(data);
+                    },error:function(){
+                        console.log("başarısız")
+                    }
+                })
+            }
+            getReq();
+            setInterval(getReq,5000);
+
+            function getMem(){
+                $.ajax({
+                    url:'@Url.Action("ReqCount","Channel")',
+                    type:'GET',
+                    data:{AuthorId:"@User.FindFirstValue(ClaimTypes.NameIdentifier)"},
+                    success:function(resp){
+                     
+                        $(".memreqcount").html(resp);
+                    }
+                })
+            }
+            getMem();
+            setInterval(getMem,5000)
+        })
+    </script>
+
+</body>
+</html>

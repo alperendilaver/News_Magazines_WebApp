@@ -1,0 +1,55 @@
+@model CreateNewViewModel
+
+<div class="container">
+   
+        <div class="d-flex justify-content-center">
+            <section class="get-in-touch">
+                <h1 class="title">Haber Oluştur</h1>
+                <br>
+                <form asp-controller="New" asp-action="CreateNew" method="post" enctype="multipart/form-data">
+                    <div class="form-field col-lg-12 mb-3">
+                        <label asp-for="tittle" class="form-label">Haber Başlığı Girin</label>
+                        <input type="text" asp-for="tittle" class="form-control">
+                    </div> 
+                    <div class="form-field col-lg-12 mb-3">
+                        <textarea asp-for="context" placeholder="Haber Metni Gir" ></textarea>
+                    </div>
+                    <div class="form-field col-lg-12 mb-3">
+                        <label asp-for="ImageFile" class="form-label">Görsel Ekle</label>
+                        <input type="file" asp-for="ImageFile" class="form-control mt-2">
+                    </div>
+                    <input type="hidden" asp-for="AuthorId" value="@Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))">        
+                    
+                    <div class="form-field col-lg-12 mb-3">
+                        <label asp-for="CategoryId"         class="form-label">Kategori Seçin</label>
+                        <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.Categories"></select>
+                    </div>
+                    
+                    
+                    
+                    <div class="form-field col-lg-12 mb-3">
+                        <button type="submit" class="submit-btn btn btn-dark">Kaydet</button> 
+                    </div>
+                </form>
+            </section>
+        </div>
+    
+</div>
+    @section Scripts {
+        
+        
+        <script>
+            tinymce.init({
+                selector:'#context', 
+                toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                tinycomments_mode: 'embedded',
+                language: 'tr',
+                tinycomments_author: 'Author name',
+                mergetags_list: [
+                    { value: 'First.Name', title: 'First Name' },
+                    { value: 'Email', title: 'Email' },
+                ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+        })
+    </script>
+}

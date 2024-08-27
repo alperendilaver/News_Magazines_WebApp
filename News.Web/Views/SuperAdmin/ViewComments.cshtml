@@ -1,0 +1,89 @@
+@model List<Comment>
+
+    <div class="container">
+        <div class="row">
+            @foreach(var comm in Model){
+                <div class="col-3 col-sm-12 col-md-3 mb-3 commentItem">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                          <h5 class="card-title">
+                            @comm.Context
+                            </h5>
+                          <h6 class="card-subtitle mb-2 text-body-secondary text-muted">@comm.PublishedDate.ToString("dd/MM/yyyy hh:mm")</h6>
+                          <p class="card-text">Kullanıcı: @comm.User.FirstName @comm.User.LastName</p>
+                          <button type="button"  class="btn btn-primary btn-sm  ViewNew">Habere Git</button>
+                          <button data-CommentId="@comm.CommentId" data-type="comment" class="btn btn-danger btn-sm DeleteComment">Yorumu Sil</button>
+                          @if(comm.Replies.Count != 0){
+                            <button type="button" class="btn btn-outline-dark btn-sm mt-1 ShowReplies">Yanıtları Görüntüle</button>
+                            <button type="button" class="btn btn-outline-dark btn-sm mt-1 HideReplies" style="display: none;">Yanıtları Gizle</button>
+    
+                            
+                            @foreach(var reply in comm.Replies){
+                                <div class="row commentItem Replies" style="display: none;">
+                                    <div class="col-1">
+                                        <i class='bx bx-subdirectory-right'></i>
+                                    </div>
+                                    <div class="col-11">
+                                        <h5 class="card-title">@reply.Text</h5>
+                                        <h6 class="card-subtitle mb-2 text-body-secondary">@reply.PublishedDate.ToString("dd/MM/yyyy hh:mm")</h6>
+                                        <p class="card-text">Kullanıcı: @reply.User.FirstName @reply.User.LastName</p>
+                                        <button data-type="reply" data-CommentId="@reply.ReplyId" class="btn btn-danger btn-sm DeleteComment">Yanıtı Sil</button>
+                                    </div>
+                                </div>
+                            }
+                          }
+                        </div>
+                      </div>
+                    </div>
+                    }
+        </div>
+    </div>
+    
+    @section Scripts{
+        <script>
+            $(document).ready(function(){
+                $(".ShowReplies").click(function(){
+                    var parent = $(this).closest(".card-body");
+                    var replies = parent.find(".Replies");
+                    $(replies).show(1000);
+                    var showreply = parent.find(".ShowReplies")
+                    $(showreply).hide()
+                    var hidereply = parent.find(".HideReplies")
+                    $(hidereply).show();
+                })
+                $(".HideReplies").click(function(){
+                    
+                    var parent = $(this).closest(".card-body");
+                    var replies = parent.find(".Replies");
+                    $(replies).hide(1000);
+                    var showreply = parent.find(".ShowReplies")
+                    $(showreply).show()
+                    var hidereply = parent.find(".HideReplies")
+                    $(hidereply).hide();
+                });
+    
+                $(".DeleteComment").click(function(){
+                    var CommentId = $(this).data("commentid");
+                    var type=$(this).data("type");
+                    var parentCard = $(this).closest(".commentItem");
+                    console.log(CommentId,type)
+                    $.ajax({
+                        url:'@Url.Action("DeleteComment","New")',
+                        type:'POST',
+                        data:{CommentId:CommentId
+                            ,Type :type},
+                        success:function(response){
+                            console.log(response)
+                            $(parentCard).remove();
+                            toastr.info(response.message)
+                        },
+                        error:function(response){
+                            console.log(response);
+                        }
+                        
+                    })
+                })
+                
+            })
+        </script>
+    }

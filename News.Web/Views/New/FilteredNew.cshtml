@@ -1,0 +1,37 @@
+@model List<New>
+@{
+  var userId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)?? "0");
+}
+    <div class="container"style="width: 35rem;>
+      <div class="container profile-container >
+        <div class="card-columns">
+          @foreach(var item in Model){
+          var filename=item.Image;
+          <div class="card mt-5">
+            <a asp-action="Detail" asp-controller="New" asp-route-id="@item.NewId">
+              @if(item.Image!=null){
+    
+              <img class="card-img-top " src="/img/@filename" alt="Card image cap">
+              }
+    
+              <div class="card-body">
+                <h5>@item.Tittle</h5>
+            
+                <p class="card-text">
+                  @Html.Raw(item.Context)
+                </p>
+              </div>
+            </a>
+            @if(item.UserId == userId)
+            @if(item.IsActive==false){
+              <a  class="btn btn-success" asp-action="PublishNew" asp-controller="New" asp-route-id="@item.NewId">Haberi Yayına Al</a>
+            }
+            else{
+              <a  class="btn btn-danger"  asp-action="UnpublishNew" asp-controller="New" asp-route-id="@item.NewId">Haberi Yayından Kaldır</a>
+            
+            }
+          </div>
+          }
+        </div>
+      </div>
+    </div>

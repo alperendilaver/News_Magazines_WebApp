@@ -1,0 +1,52 @@
+@model List<Notify>
+
+    <div class="container mx-auto">
+        <div class="row justify-content-center">
+            @await Html.PartialAsync("_GetNotifiesPartial",Model)
+        </div>
+    </div>
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+            $(document).on("click",".btn-success",function(){
+                var notid=$(this).data("notifyid");
+                var parentCard = $(this).closest(".card")
+                
+                $.ajax({
+                    url:'@Url.Action("MarkAsReadNotify","Users")',
+                    type:'POST',
+                    data:{NotifyId:notid},
+                    success:function(response){
+                        console.log(response)
+                        $(parentCard).css("background-color"," #d7d6d6;")
+                    }
+                })
+            })
+            $(document).on("click",".btn-danger",function(){
+                var notid=$(this).data("notifyid");
+                var parentCard = $(this).closest(".card");
+                $.ajax({
+                    url:'@Url.Action("DeleteNotify","Users")',
+                    type:'POST',
+                    data:{NotifyId:notid},
+                    success:function(response){
+                        $(parentCard).remove(); 
+                    }
+                })
+            })
+            function GetNotifies(){
+                $.ajax({
+                url:'@Url.Action("GetNotifies","Users")',
+                type:'GET',
+                data:{UserId:"@User.FindFirstValue(ClaimTypes.NameIdentifier)"},
+                success:function(data){
+                    console.log("basarılı")
+                    $(".row").html(data);
+                    }
+                })
+            }
+            GetNotifies();
+            setInterval(GetNotifies,1000)
+        })
+    </script>
+}

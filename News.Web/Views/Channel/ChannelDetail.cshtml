@@ -1,0 +1,174 @@
+@model Channel
+@{
+    var userId = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+}
+
+
+<div class="container mx-auto">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <div class="createposts mb-3">
+                @if(userId == Model.Author.UserId)
+                {
+                    <div class="mb-3">
+                        <label class="form-label">Mesajını Yaz</label>
+                        <textarea class="form-control context" placeholder="Üyelerin için gönderi oluştur"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary sharePost">Paylaş</button>
+                }
+            </div>
+            <div class="showposts mt-3">
+                @foreach(var post in Model.Posts)
+                {
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <p class="card-text fs-5">@post.Context</p>
+                            <p class="text-muted">@post.PublishedTime.ToString("dd/MM/yyyy HH:mm")</p>
+                            <div class="d-flex flex-row-reverse">
+                                <div class="postItem d-flex">
+                                    <p class="fw-light DisslikeCount">@post.DisslikeCount</p>
+                                    <a class="AddReactionToPost" data-postid="@post.PostId" data-channelid="@post.ChannelId" data-type="false"><i class="bx bx-dislike"></i></a>
+                                </div>
+                                <div class="postItem d-flex">  
+                                    <p class="fw-light LikeCount">@post.LikeCount</p>
+                                    <a class="AddReactionToPost" data-postid="@post.PostId" data-channelid="@post.ChannelId" data-type="true"><i class="bx bx-like"></i></a>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row-reverse">
+                                @if(userId == Model.Author.UserId)
+                                {
+                                    <a class="btn btn-sm btn-danger deletePost" data-postid="@post.PostId">Mesajı Sil</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        @if(userId == Model.Author.UserId)
+        {
+            <div class="col-5 d-flex flex-row-reverse">
+                <div class="delete">
+                    <form asp-action="DeleteChannel" asp-controller="Channel" method="post">
+                        <input type="hidden" name="ChannelId" value="@Model.ChannelId">
+                        <button class="btn btn-danger DeleteChannel">Kanalı Sil</button>
+                    </form>
+                </div>      
+                <div class="view" style="margin-right: 5px;">
+                    <a asp-action="ViewMembers" asp-controller="Channel" asp-route-ChannelId="@Model.ChannelId" class="btn btn-primary">
+                        <p class="MemCount">@await Html.PartialAsync("_GetChannelMemberCountPartial")</p>
+                    </a>
+                </div>
+                <div class="requests" style="margin-right: 5px;">
+                    <a asp-action="ViewRequests" asp-controller="Channel" asp-route-ChannelId="@Model.ChannelId" class="btn btn-dark">
+                       
+                        Üyelik İsteklerini Görüntüle
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .postItem{
+        padding-left: 13px;
+    }
+</style>
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+            $(".sharePost").click(function(){
+                var context=$(".context").val();
+                var channelId = "@Model.ChannelId";
+                var AuthorId = "@Model.Author.UserId"
+                var title = $(".title").val();
+                $.ajax({
+                    url:'@Url.Action("CreatePost","Channel")',
+                    type:'POST',
+                    data :{Context:context,ChannelId:channelId,AuthorId:AuthorId,Tittle:title},
+                    success:function(response){
+                        console.log(response);
+                        toastr.success(response.message);
+                        $(".context").val("")
+                        $(".showposts").prepend(`<div class="card mb-3">
+                    <div class="card-body">
+                      
+                      <p class="card-text fs-5">${response.context}</p>
+                      <p class="text-muted">${response.publishedTime}</p>
+                      <div class="d-flex flex-row-reverse">
+                        <div class="postItem d-flex">
+                            <p class="fw-light DisslikeCount">0</p>
+                            <a class="AddReactionToPost" data-postid=${response.postId} data-channelid=${response.channelId} data-type="false" ><i class="bx bx-dislike"></i></a>
+                        </div>
+                        <div class="postItem d-flex">  
+                            <p class="fw-light LikeCount">0</p>
+                            <a class="AddReactionToPost" data-postid=${response.postId} data-channelid=${response.channelId} data-type="true" ><i class="bx bx-like"></i></a>
+                        </div>
+                        </div>
+                    </div>
+                  </div>`)
+                    },
+                    error:function(response){
+                        console.log(response);
+                        toastr.error(response.message)
+                    }
+                })
+            })
+            
+            $(".AddReactionToPost").click(function(){
+                 var postId=$(this).data("postid");
+                var userId= "@userId"
+                var type = $(this).data("type");
+                var disslike = $(this).closest(".card").find(".DisslikeCount")
+                var like=$(this).closest(".card").find(".LikeCount")
+                $.ajax({
+                    url:'@Url.Action("AddReaction","Channel")',
+                    type:'POST',
+                    data:{postId:postId,userId:userId,type:type},
+                    success:function(response){
+                        console.log(response)
+                        $(like).text(response.likeCount)
+                        $(disslike).text(response.disslikeCount)
+                        toastr.success(response.message)
+                    },
+                    error:function(response){
+                        console.log(response)
+                    }
+                })
+            })
+        
+            $(".deletePost").click(function(){
+                var postId=$(this).data("postid");
+                var parent = $(this).closest(".card")
+                console.log(postId)
+                $.ajax({
+                    url:'@Url.Action("DeletePost","Channel")',
+                    type:'POST',
+                    data:{postId:postId},
+                    success:function(response){
+                        toastr.info(response.message);
+                        $(parent).remove();
+                    },
+                    error:function(response){
+                        toastr.error(response.message);
+                    }
+                })
+            })
+        
+            function getMemCount(){
+                $.ajax({
+                    url:'@Url.Action("MemCount","Channel")',
+                    data:{ChannelId:"@Model.ChannelId"},
+                    type:'GET',
+                    success:function(data){
+                        console.log("başarılı")
+                        $(".MemCount").text(data);
+                    }
+                })
+            }
+            getMemCount();
+            setInterval(getMemCount,10000)
+        })
+    </script>
+}

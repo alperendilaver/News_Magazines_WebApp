@@ -1,0 +1,13 @@
+@model News.Web.Models.Home.ShowNewsViewModel
+<div class="row">
+        <div class="list-group">
+            @foreach (var item in Model.AllNews)
+            {
+                <a asp-action="Detail" asp-controller="New" asp-route-id="@item.NewId" class="list-group-item list-group-item-action">
+                    <h5 class="mb-1">@item.Tittle</h5>
+                    <small>@item.PublishedTime.TimeAgo()</small>
+                    
+                </a>
+            }
+        </div>  
+</div>

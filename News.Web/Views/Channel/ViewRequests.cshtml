@@ -1,0 +1,63 @@
+@model List<ChannelRequest>
+
+    <div class="container mx-auto">
+        <div class="row justify-content-center">
+            <div class="col-6">
+
+            <div class="row justify-content-center">
+
+      
+            @foreach(var req in Model){
+                <div class="col-4 col-md-6 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            @req.Channel.ChannelName
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">
+                                İsteği Atan: @req.User.FirstName @req.User.LastName
+                            </div>
+                            <div class="card-text">
+                                <div class="d-flex flex-row-reverse">
+                                    <div class="procItem">
+                                    <button data-isConfirm="true" data-reqid="@req.RequestId" class="btn btn-sm btn-success ReqBtn">İsteği Onayla</button>
+                                </div>
+                                <div class="procItem">
+                                    <button data-isConfirm="false" data-reqid="@req.RequestId"class="btn btn-danger btn-sm ReqBtn">İsteği Sil</button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+        </div>
+    </div>
+    <style>
+        .procItem{
+        
+            margin-right: 10px;
+        }
+    </style>
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+            $(".ReqBtn").click(function(){
+                var reqId= $(this).data("reqid");
+                var isConf = $(this).data("isconfirm");
+                var card = $(this).closest(".card");
+                $.ajax({
+                    url:'@Url.Action("ProccessRequest","Channel")',
+                    type:'POST',
+                    data:{ReqId:reqId,type:isConf},
+                    success:function(response){
+                        toastr.success(response.message);
+                        $(card).remove();
+                    }
+                })
+            })
+        });
+    </script>
+}
