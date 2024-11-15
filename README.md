@@ -1,6 +1,7 @@
 This project is a comprehensive News Management System developed with ASP.NET Core. It provides a platform where users can manage news content, add comments, reply to these comments, and publish content across various channels.
 
 News Features:
+
   
   News Management: Users can add, edit, and delete news. News can be categorized, and category change requests can be submitted.
   
@@ -13,6 +14,7 @@ News Features:
   Comment Reporting and Removal: If inappropriate content is found in comments, users can report them, and the comments can be removed.
   
 Channel Features:
+
    
    Channel Management: Users can create, manage, and delete channels.
   
@@ -21,6 +23,7 @@ Channel Features:
    Notifications: Instant notifications are sent to users regarding membership requests and channel activities.
   	
 SuperAdmin Features:
+
    
    User Role Management: The SuperAdmin can manage and update user roles.
   
@@ -29,6 +32,8 @@ SuperAdmin Features:
    Request Management: User-submitted requests can be evaluated and processed through the SuperAdmin panel.
 
 Technical Details:  
+   
+   
    Technologies: The project was developed using ASP.NET Core, Entity Framework Core, AJAX, and Razor Pages.
   	
    Design Principles: Developed following SOLID principles. A layered architecture ensures clear separation between business logic, data access, and user interface layers.
